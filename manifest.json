@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "ReelBye",
+  "version": "1.0.0",
+  "description": "Removes all video content from webpages, including standard video elements and embedded iframes, with focus on Facebook.",
+  "icons": {
+    "16": "assets/reelbye-icon.png",
+    "48": "assets/reelbye-icon.png",
+    "128": "assets/reelbye-icon.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/reelbye-icon.png",
+      "48": "assets/reelbye-icon.png",
+      "128": "assets/reelbye-icon.png"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "js": [
+        "redirect-reel.js"
+      ],
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://*.fb.com/*",
+        "*://*.m.facebook.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
